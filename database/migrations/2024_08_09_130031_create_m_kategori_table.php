@@ -1,29 +1,26 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace Database\Seeders;
 
-return new class extends Migration
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class KategoriSeeder extends Seeder
 {
     /**
-     * Run the migrations.
+     * Run the database seeds.
      */
-    public function up(): void
+    public function run(): void
     {
-        Schema::create('m_kategori', function (Blueprint $table) {
-            $table->id('kategori_id');
-            $table->string('kategori_kode',10)->unique();
-            $table->string('kstegori_nama',100);
-            $table->timestamps();
-        });
-    }
+        $data = [
+            ['nama_kategori' => 'Elektronik'],
+            ['nama_kategori' => 'Pakaian'],
+            ['nama_kategori' => 'Makanan'],
+            ['nama_kategori' => 'Peralatan Rumah Tangga'],
+            ['nama_kategori' => 'Buku'],
+        ];
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
-        Schema::dropIfExists('m_kategori');
+        DB::table('m_kategori')->insert($data);
     }
-};
+}
